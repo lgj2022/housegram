@@ -1,0 +1,210 @@
+@charset "UTF-8";
+a{
+    text-decoration: none;
+    color: gray;
+}
+
+/* font awesome icon css */
+.fa-search{
+    line-height: 24px;
+}
+
+.fa-leaf{
+    color: green;
+    margin-right: 5px;
+}
+
+@keyframes titleAnimation {
+    from {
+      top: 200px;
+    }
+  
+    to {
+      top: 70px;
+    }
+}
+  
+
+/*  navbar css */
+
+nav{
+    font-weight: bold;
+    width: 100vw;
+    /* background-color: rgb(151, 151, 237); */
+    box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 10%);
+}
+
+nav.active{
+    background-color: #afb3d9;
+    opacity: 0.8;
+}
+
+.navbar{
+    color: black;
+    display: flex;
+    padding: 16px 30px;
+    justify-content: space-between;
+}
+
+.logo{
+    height: 26px;
+}
+.logo a{
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+}
+.menu, .user-account-btn-list{
+    display: flex;
+}
+
+.menu.active, .user-account-container.active{
+    display: flex;
+}
+
+.menu-item{
+    opacity: 1;
+    color: balck;
+    list-style: none;
+    line-height: 34px;
+    margin-right: 10px;
+    margin-left: 20px;
+    
+}
+
+.menu-item:first-child{
+    margin-left: 0px;
+}
+
+.menu-item:last-child{
+    margin-right: 0;
+}
+
+.user-account-container{
+    padding: 8px 20px;
+}
+
+.user-account-btn{
+    line-height: 34px;
+    display: none;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.user-account-btn.active{
+    display: inline-block;
+}
+
+.menu-item:hover, .user-account-btn:hover{
+    color: cornflowerblue;
+}
+
+
+.fa-bars{
+    visibility: hidden;
+    font-size: 22px;
+    position: absolute;
+    top: 16px;
+    right: 26px;
+    cursor: pointer;
+}
+
+
+/* footer css */
+footer{
+    width: 100vw;
+    padding: 20px;
+    text-align: center;
+    border: 0px;
+    color: gray;
+    background-color: #e8e7e7;
+}
+
+
+/* dropdown css */
+.form-select{
+    margin-right: 20px;
+    width: 150px;
+}
+
+.form-select:last-child{
+    margin-right: 0px;
+}
+
+
+/* Map css */
+
+
+.map{
+    width: 100vw;
+    height: 300px;
+    border: 1px solid black;
+}
+
+/* info css -> js로 추가 */ 
+.col-4{
+    height: 500px;
+    overflow : auto;
+}
+
+.list-group-item{
+
+}
+
+
+/* 반응형 */
+@media screen and (max-width:775px){
+    .content-list{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ad-container{
+        width: 95%;
+    }
+
+    .tip-container, .news-container{
+        padding-top: 10px;
+        padding-left: 10px;
+        margin-top: 10px;
+        border-top: 1px solid #eeeeee;
+    }
+
+    .tip-list{
+        margin: 0 0 0 2px;
+    }
+}
+
+
+@media screen and (max-width:660px) {    
+    .navbar{
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 20px 10px 20px;
+    }
+
+    .user-account-container{
+        right: 0px;
+        position: absolute;
+        top: 34px;
+    }
+
+    .fa-bars{
+        visibility: visible;
+    }
+
+    .menu, .user-account-container{
+        display: none;
+        margin-top: 10px;
+    }
+
+    .searchForm{
+        right: 18px;
+        top: 97px;
+    }
+
+
+@media screen and (max-width:520px){
+    .menu-item, .user-account-btn{
+        font-size: 14px;
+    }
+}}

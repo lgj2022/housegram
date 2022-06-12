@@ -1,0 +1,89 @@
+.loginFormWrap {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.loginFormWrap .loginForm {
+    margin: 0px auto;
+    max-width: 500px;
+    padding: 25px;
+}
+
+.loginForm ul {
+    text-align: center;
+}
+
+.loginForm ul li {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 350px;
+    position: relative;
+}
+
+.loginForm ul li input {
+    width: 350px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.loginForm ul li label {
+    top: 15px;
+    left: 0;
+    position: absolute;
+    transition: all .3s;
+}
+
+input[id='id']:focus+label,
+input[id='id']:valid+label,
+input[type='password']:focus+label,
+input[type='password']:valid+label {
+    top: -10px;
+    font-size: 12px;
+}
+
+.error_message {
+    height: 16px;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+
+}
+
+.btnWrap {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.loginErrorWrap {
+    margin-top: 20px;
+    color: red;
+}
+
+.createLink {
+    color: cornflowerblue;
+}
+
+.btnWrap .loginBtn,
+.btnWrap .loginCancle {
+    font-size: 16px;
+    padding: 8px 20px;
+    outline: none;
+    border: 1px solid transparent;
+    color: #fff;
+}
+
+.btnWrap{
+    margin-bottom: 20px;
+}
+
+.btnWrap .loginBtn {
+    background: cornflowerblue;
+}
+
+.btnWrap .loginCancle {
+    background-color: #ff5757;
+}

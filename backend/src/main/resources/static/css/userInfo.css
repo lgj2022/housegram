@@ -1,0 +1,30 @@
+@charset "UTF-8";
+#user-info{
+    border-radius: 10px;
+    width: 80vw;
+    margin: 30px auto;
+    box-shadow: 1px 1px 3px 1px rgb(0 0 0 / 10%);
+    padding: 20px;
+    position: relative;
+    max-width: 475px;
+}
+
+#user-info ul li, #user-info label{
+    margin-bottom: 20px;
+}
+
+#passwordCheck.active, #password.active{
+    display: block;
+}
+
+#passwordCheck, #password{
+    display: none;
+}
+
+label[for="passwordCheck"], label[for="password"]{
+    display: none;
+}
+
+label[for="passwordCheck"].active, label[for="password"].active{
+    display: block;
+}

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.ArticleMapMapper">
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			and ${key} like concat('%', #{word}, '%')
+		</if>
+	</sql>
+	<!-- Article 정보를 저장한다. -->
+	<insert id="create" parameterType="ArticleDto">
+		insert into article (
+		userid, title, content, createdAt) values (#{userid}, #{title},
+		#{content},now())
+	</insert>
+	<insert id="registerFile" parameterType="ArticleDto">
+		insert into file_info (articleno, savefolder, originfile, savefile,imgpath)
+		values
+		<foreach collection="fileInfos" item="fileinfo" separator=" , ">
+			(#{articleNo}, #{fileinfo.saveFolder}, #{fileinfo.originFile}, #{fileinfo.saveFile} , #{fileinfo.imgpath})
+		</foreach>
+	</insert>
+	
+	<insert id="registerTagArticle" parameterType="ArticleDto">
+		insert into article_tag(
+		articleno,tagno) values (#{articleNo}, #{hashtagno})
+	</insert>
+	
+	<insert id="createLike" parameterType="ArticleDto">
+		insert into like_table(
+		articleno,userid,like_check) values (#{articleNo}, #{userid},1)
+	</insert>
+	<insert id="deleteLike" parameterType="ArticleDto">
+		delete from like_table where userid=#{userid} and articleno =#{articleNo}
+	</insert>
+	<insert id="registerTag" parameterType="String">
+		insert into tag (tagname)
+		values
+		(#{tagname})
+	</insert>
+	
+	<!-- Article 정보를 삭제한다. -->
+	<insert id="delete" parameterType="int">
+		delete from article where
+		articleno=#{articleNo}
+	</insert>
+	
+	
+	
+	<!-- Article 정보를 삭제한다. -->
+	<insert id="deletFile" parameterType="int">
+		delete from file_info where 
+		articleno=#{articleNo}
+	</insert>
+	
+	<!-- Article 정보를 수정한다. -->
+	<insert id="update" parameterType="ArticleDto">
+		update article
+		set
+		title=#{title}, content =#{content}
+		where articleno=#{articleNo}
+	</insert>
+
+	
+	<resultMap type="ArticleDto" id="articleList">
+		<result column="articleno" property="articleNo"/>
+		<result column="userid" property="userid"/>
+		<result column="name" property="username"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="like_count" property="like_count"/>
+		<result column="createdAt" property="createdAt"/>
+		<result column="profile_img" property="user_profile_img"/>
+		<collection property="fileInfos" column="articleno=articleno" javaType="list" ofType="FileInfoDto" select="fileInfoList"/>
+	</resultMap>
+	
+
+	<!-- Article 정보를 조회한다. -->
+	<select id="detail" parameterType="int"
+		resultMap="articleList">
+		select g.articleno, g.userid, g.title, g.content, g.like_count,g.createdAt ,m.name , m.profile_img
+		from article g, user m
+		where g.userid = m.id and g.articleno = #{articleno}
+	</select>
+	
+	<select id="lastInsertId" resultType="int">
+		SELECT LAST_INSERT_ID();
+	</select>
+	
+	<select id="hashtagnum" resultType="int" parameterType="String">
+		select tagno from tag where tagname= #{tagname}
+	</select>
+	
+	<select id="getTotalCount" resultType="int" parameterType="map">
+		select count(articleno) from article
+		<where>
+		<include refid="search"></include>
+		</where>
+	</select>
+	
+	
+	<select id="gethashTotalCount" resultType="int" parameterType="map">
+		select count(a.articleno) from article a,article_tag b,tag c
+		where a.articleno = b.articleno and b.tagno =c.tagno and c.tagname = #{word};
+	</select>
+	
+	
+	
+	
+	<select id="checkTag" resultType="int" parameterType="String">
+		select count(tagname) from tag where tagname= #{tagname}
+	</select>
+	
+	
+	<select id="listArticle" resultMap="articleList" parameterType="map">
+		select g.articleno, g.userid, g.title, g.content, g.like_count,g.createdAt ,m.name
+		from article g, user m
+		where g.userid = m.id
+		<include refid="search"></include>
+		order by g.articleno desc
+		 limit #{start}, #{spp}
+	</select>
+
+	<select id="hashlistArticle" resultMap="articleList" parameterType="map">
+		select a.articleno, a.userid, a.title, a.content, a.like_count,a.createdAt, m.name from article a,article_tag b,tag c,user m
+		where a.articleno = b.articleno and b.tagno =c.tagno and a.userid =m.id and c.tagname = #{word}
+		order by a.articleno desc
+		 limit #{start}, #{spp}
+	</select>
+
+	<select id="fileInfoList" resultType="FileInfoDto">
+		select savefolder, originfile, savefile ,imgpath
+		from file_info
+		where articleno = #{articleno}
+	</select>
+	
+	
+	<select id="tagInfoList" resultType="TagDto" parameterType="int">
+		select tagno,tagname from tag where tagno in (select tagno from article_tag where articleno=#{articleNo});
+	</select>
+	
+	
+	<select id="recomend" resultType="String">
+		select tagname from tag a ,article_tag b where a.tagno=b.tagno group by tagname order by(count(tagname)) desc limit 5;
+	</select>
+	
+	<select id="chekLike" parameterType="ArticleDto" resultType="int">
+		select count(*) from like_table where userid=#{userid} and articleno =#{articleNo} 
+	</select>
+	
+	<select id="cntLike" parameterType="ArticleDto" resultType="int">
+		select count(*) from like_table where articleno =#{articleNo} 
+	</select>
+</mapper>

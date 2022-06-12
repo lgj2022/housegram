@@ -1,0 +1,415 @@
+a {
+	text-decoration: none;
+	color: black;
+}
+
+/* font awesome icon css */
+.fa-search {
+	line-height: 24px;
+}
+
+.fa-leaf {
+	color: green;
+	margin-right: 5px;
+}
+
+/* cover part css */
+.cover {
+	position: relative;
+}
+
+.cover-title {
+	color: aliceblue;
+	position: absolute;
+	top: 70px;
+	font-family: 'Lobster', cursive;
+	/* font-family: 'Cookie', cursive; */
+	font-size: 100px;
+	width: 100vw;
+	animation-name: titleAnimation;
+	animation-duration: 1.5s;
+	text-align: center;
+}
+
+.cover-img {
+	width: 100vw;
+	height: calc(100vw/ 2);
+}
+
+@
+keyframes titleAnimation {from { top:200px;
+	
+}
+
+to {
+	top: 70px;
+}
+
+}
+
+/*  navbar css */
+nav {
+	font-weight: bold;
+	position: fixed;
+	z-index: 10;
+	width: 100vw;
+	background-color: ghostwhite;
+	opacity: 0.5;
+}
+
+nav.active {
+	background-color: #afb3d9;
+	opacity: 0.8;
+}
+
+.navbar {
+	color: black;
+	display: flex;
+	padding: 16px 30px;
+	justify-content: space-between;
+}
+
+.logo {
+	height: 26px;
+}
+
+.logo a {
+	font-family: 'Lobster', cursive;
+	font-size: 20px;
+}
+
+.menu, .user-account-btn-list {
+	display: flex;
+}
+
+.menu.active, .user-account-container.active {
+	display: flex;
+}
+
+.menu-item {
+	opacity: 1;
+	color: balck;
+	list-style: none;
+	line-height: 34px;
+	margin-right: 10px;
+	margin-left: 20px;
+}
+
+.menu-item:first-child {
+	margin-left: 0px;
+}
+
+.menu-item:last-child {
+	margin-right: 0;
+}
+
+.user-account-container {
+	padding: 8px 20px;
+}
+
+.user-account-btn {
+	line-height: 34px;
+	display: none;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.user-account-btn.active {
+	display: inline-block;
+}
+
+.searchForm {
+	visibility: hidden;
+	position: absolute;
+	right: 40px;
+	top: 60px;
+	z-index: 2;
+	width: 180px;
+	height: 30px;
+}
+
+.searchForm.active {
+	visibility: visible;
+}
+
+.searchForm input {
+	box-shadow: 0px 0px 0px 2px #aea8a8;
+	border: 0px;
+	border-radius: 10px;
+	padding: 0 10px;
+	height: 100%;
+	width: 100%;
+}
+
+.searchForm input:focus {
+	outline: none;
+}
+
+.search {
+	line-height: inherit;
+	background-color: rgb(218, 218, 218);
+	padding: 5px 10px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.searchForm input:focus {
+	outline: none;
+}
+
+.searchWrap {
+	width: 310px; position : absolute;
+	right: 50px;
+	position: absolute;
+}
+
+#keywordSearch {
+	width: 100%;
+	padding: 8px;
+	font-size: 18px;
+}
+
+#recommend {
+	position: absolute;
+	width: 310px;
+	margin-top: 10px;
+	padding-top: 6px;
+	border: 1px solid rgb(240, 240, 240);
+	border-radius: 8px;
+	background: rgb(255, 255, 255);
+	overflow: hidden;
+	opacity: 1;
+	transition: opacity 0.2s ease-in-out 0s;
+	box-shadow: rgb(0 0 0/ 8%) 5px 5px 10px;
+	z-index: 8000;
+}
+
+#recommend.invisible {
+	display: none;
+}
+
+.item {
+	font-size: 20px;
+	padding: 8px 20px;
+}
+
+.keywordSelect{
+	background: #c7c6c6;
+}
+
+.emphasize {
+	font-weight: bold;
+	color: cornflowerblue;
+}
+
+.menu-item:hover, .user-account-btn:hover {
+	color: cornflowerblue;
+}
+
+.fa-bars {
+	visibility: hidden;
+	font-size: 22px;
+	position: absolute;
+	top: 16px;
+	right: 26px;
+	cursor: pointer;
+}
+
+/* dropwon menu css */
+.dropdown-container {
+	display: flex;
+	justify-content: center;
+	padding: 8px 20px;
+}
+
+.dropdown {
+	margin: 0 20px 0 0;
+}
+
+.dropdown:last-child {
+	margin: 0;
+}
+
+.btn-style {
+	border: 3px solid cornflowerblue;
+	width: 150px;
+	border-radius: 0px;
+}
+
+.map {
+	width: 100vw;
+	height: 300px;
+	border: 1px solid black;
+}
+
+/* content css */
+.content-list {
+	padding: 8px 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr
+}
+
+.news-container p, .tip-container p {
+	padding: 8px 0px;
+	font-size: 20px;
+}
+
+.news-list {
+	padding: 0px 30px;
+	margin-top: 20px;
+}
+
+.news-list li {
+	list-style: square;
+	margin-bottom: 20px;
+}
+
+.news-list li span {
+	color: cornflowerblue;
+}
+
+.tip-list li {
+	color: gray;
+	margin-bottom: 20px;
+}
+
+.tip-list li:first-child {
+	margin-top: 20px;
+}
+
+.tip-list i {
+	margin-right: 10px;
+}
+
+.ad-container {
+	height: 100%;
+	background-color: rgba(183, 183, 245, 0.5);
+	border: 1px solid #dad8d8;
+	display: inline-block;
+	padding: 20px 20px;
+}
+
+.ad-title {
+	font-size: 20px;
+}
+
+.hash-tag {
+	color: cornflowerblue;
+	font-weight: bold;
+}
+
+.hash-tag {
+	margin-top: 20px;
+}
+
+/* footer css */
+footer {
+	width: 100vw;
+	padding: 20px;
+	text-align: center;
+	border: 0px;
+	color: gray;
+	background-color: #e8e7e7;
+}
+
+/* dropdown css */
+.form-select {
+	margin-right: 20px;
+	width: 150px;
+}
+
+.form-select:last-child {
+	margin-right: 0px;
+}
+
+/* Map css */
+.map {
+	width: 100vw;
+	height: 300px;
+	border: 1px solid black;
+}
+
+/* info css -> js濡� 異붽� */
+.col-4 {
+	height: 500px;
+	overflow: auto;
+}
+
+.list-group-item {
+	
+}
+
+/* 諛섏쓳�삎 */
+@media screen and (max-width:835px) {
+	.cover-title {
+		font-size: 80px;
+	}
+	.menu-item, .user-account-btn {
+		font-size: 14px;
+	}
+	.map-wrap {
+		flex-direction: column;
+	}
+	.map-wrap div:first-child {
+		width: 100%;
+	}
+	.apt-info {
+		width: 100%;
+		height: 300px;
+	}
+}
+
+@media screen and (max-width:775px) {
+	.menu-item, .user-account-btn {
+		font-size: 12px;
+	}
+	.content-list {
+		display: flex;
+		flex-direction: column;
+	}
+	.ad-container {
+		width: 95%;
+	}
+	.tip-container, .news-container {
+		padding-top: 10px;
+		padding-left: 10px;
+		margin-top: 10px;
+		border-top: 1px solid #eeeeee;
+	}
+	.tip-list {
+		margin: 0 0 0 2px;
+	}
+}
+
+@media screen and (max-width:720px) {
+	.menu-item, .user-account-btn {
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width:660px) {
+	.cover-title {
+		font-size: 50px;
+	}
+	.navbar {
+		align-items: flex-start;
+		flex-direction: column;
+		padding: 16px 20px 10px 20px;
+	}
+	.user-account-container {
+		right: 0px;
+		position: absolute;
+		top: 34px;
+	}
+	.fa-bars {
+		visibility: visible;
+	}
+	.menu, .user-account-container {
+		display: none;
+		margin-top: 10px;
+	}
+	.searchForm {
+		right: 18px;
+		top: 97px;
+	}
+}

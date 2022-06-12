@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.NoticeMapMapper">
+	<sql id="search">
+		<if test="word != null and word != ''">
+			and ${key} like concat('%', #{word}, '%')
+		</if>
+	</sql>
+	<!-- Notice 정보를 저장한다. -->
+	<insert id="create" parameterType="NoticeDTO">
+		insert into notice (userId,
+		author, title, content, createdAt , hits) values (#{userId}, #{author},
+		#{title}, #{content},now() ,0)
+	</insert>
+	<!-- Notice 정보를 삭제한다. -->
+	<insert id="delete" parameterType="NoticeDTO">
+		delete from notice where
+		noticeNo=#{noticeNo}
+	</insert>
+
+	<!-- Notice 정보를 수정한다. -->
+	<insert id="update" parameterType="NoticeDTO">
+		update notice
+		set
+		title=#{title}, content =#{content} ,hits = #{hits}
+		where noticeNo=#{noticeNo}
+	</insert>
+
+	<!-- Notice 정보를 조회한다. -->
+	<select id="detail" parameterType="string"
+		resultType="NoticeDTO">
+		select * from notice where noticeNo=#{noticeNo}
+	</select>
+	
+	
+	<select id="getTotalCount" resultType="int" parameterType="map">
+		select count(noticeNo) from notice
+		<where>
+		<include refid="search"></include>
+		</where>
+	</select>
+	
+	<select id="listNotice" resultType="NoticeDTO" parameterType="map">
+		select * from notice
+		<where>
+		<include refid="search"></include>
+		</where>
+		 limit #{start}, #{spp}
+	</select>
+
+	<!-- 제목 또는 내용에 따른 Notice 정보 검색. -->
+	<select id="searchNotice" parameterType="map"
+		resultType="NoticeDTO">
+		select *
+		from notice
+		<if test='op.equals("title")'>
+			where title like CONCAT("%", #{word},"%")
+		</if>
+		<if test='op.equals("content")'>
+			where content like CONCAT("%", #{word},"%")
+		</if>
+	</select>
+
+</mapper>

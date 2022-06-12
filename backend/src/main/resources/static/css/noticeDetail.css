@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.detailWrap{
+    border-radius: 10px;
+    width: 80vw;
+    margin: 30px auto;
+    box-shadow: 1px 1px 3px 1px rgb(0 0 0 / 10%);
+    padding: 20px;
+    position: relative;
+    max-width: 800px;
+}
+
+.detailWrap p{
+    margin-bottom: 10px;
+}
+
+.update-wrap{
+    margin-bottom: 20px;
+}
+
+.update-wrap button, .update-wrap a{
+    padding: 0px 20px;
+    width: 80px;
+    line-height: 30px;
+}
+
+.update-wrap.active{
+    display: block;
+}
+
+#detail-title{
+    font-size: 30px;
+}
+#detail-author{
+    font-size: 20px;
+}
+#detail-date{
+    color: gray;
+    padding-bottom: 10px;
+    border-bottom: 1px rgb(187, 187, 187) solid;
+}

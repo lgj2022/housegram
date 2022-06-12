@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.NewsMapMapper">
+	<!-- News 정보를 저장한다. -->
+	<insert id="create" parameterType="NewsDTO">
+		insert into news (title,
+		link, publisher, createdAt,img) values (#{title}, #{link},
+		#{publisher},now(),#{img})
+	</insert>
+	<!-- News 정보를 삭제한다. -->
+	<insert id="delete">
+		delete from news
+	</insert>
+
+	<!-- News 정보를  하나 조회한다. -->
+	<select id="checkDate" 	resultType="NewsDTO">
+		SELECT * FROM news WHERE createdAt >=(CURDATE()-INTERVAL 7 DAY) limit 1;
+	</select>
+	
+	<!-- News 정보를   조회한다. -->
+	<select id="listNews" resultType="NewsDTO">
+		SELECT * FROM news limit 10;
+	</select>
+
+</mapper>

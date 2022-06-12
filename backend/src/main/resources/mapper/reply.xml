@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.ReplyMapMapper">
+	<sql id="search">
+		<if test="word != null and word != ''">
+			and ${key} like concat('%', #{word}, '%')
+		</if>
+	</sql>
+	<!-- Reply 정보를 저장한다. -->
+	<insert id="create" parameterType="ReplyDTO">
+		insert into reply (articleno,
+		 rcontent, rcreatedAt , rid) values (#{articleno},
+		#{rcontent},now(),#{rid})
+	</insert>
+	<!-- Reply 정보를 삭제한다. -->
+	<insert id="delete" parameterType="ReplyDTO">
+		delete from reply where
+		rno=#{rno}
+	</insert>
+
+	<!-- Reply 정보를 수정한다. -->
+	<insert id="update" parameterType="ReplyDTO">
+		update reply
+		set
+		rcontent=#{rcontent}, rcreatedAt=now()
+		where rno=#{rno}
+	</insert>
+		
+	<select id="listReply" resultType="ReplyDTO" parameterType="int">
+		select * from reply
+		where articleno = #{articleno}
+	</select>
+</mapper>
